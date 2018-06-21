@@ -32,3 +32,11 @@ img {
     width: 100%;
     border: 2px solid white;
 }
+img:hover {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -ms-transform-origin-x: left;
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    -webkit-transform-origin-x: left;
+    transform: scale(1.5);
+    transform-origin: left;
+}

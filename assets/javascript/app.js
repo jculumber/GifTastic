@@ -61,10 +61,11 @@ $(document).ready(function () {
                     // Create and store a div tag
                     var topicDiv = $("<div id='images'>");
                     
-                    // Create and store a button tag
-                    var downloadButton = $("<a id='download' download='gif' target='_blank'>").text("Download");
+                    // Create and store a tag for the download button
+                    var downloadButton = $("<a id='download' target='_blank'>").text("Download");
                     downloadButton.addClass("btn btn-danger font-weight-bold shadow rounded py-0 m-0 mt-1 float-right")
                     downloadButton.attr("href", results[i].images.original_mp4.mp4);
+                    downloadButton.attr("download", "gif");
 
                     // Create a paragraph tag with the topic item's rating
                     var topicRating = $("<p class='float-left'>").text(("Rating: " + results[i].rating.toUpperCase()));
@@ -118,9 +119,11 @@ $(document).ready(function () {
         event.preventDefault();
         // This line grabs the input from the textbox
         var topic = $("#user-input").val().trim();
+        var topicName = topic.split(" ");
+        var fullName = topicName[0] + "+" + topicName[1]
 
-        // Adding movie from the textbox to our array
-        topics.push(topic);
+        // Adding topic from the textbox to our array
+        topics.push({name: fullName, text: topic});
 
         // Calling renderButtons which handles the processing of our topics array
         renderButtons();
