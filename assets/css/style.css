@@ -5,8 +5,30 @@ body {
     background-size: 100%;
     background-attachment: fixed;
     font-weight: bold;
+    background-color: #005596;
 }
 
-button, div, form, input, label {
+button {
     margin: 10px;
+    float: left;
+    font-size: 100%;
+}
+
+#buttons {
+    margin-bottom: 20px;
+}
+
+div, form, input, label {
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+#images {
+    float: left;
+    width: 30%;
+}
+
+img {
+    width: 100%;
+    border: 2px solid white;
 }

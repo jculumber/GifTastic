@@ -1,5 +1,5 @@
-var topics = ["Anthony Rizzo", "Kris Bryant", "Javier Baez", "Addison Russell", "Jason Heyward",
-    "Kyle Schwarber", "Ben Zobrist", "Albert Almora, Jr.", "Ian Happ", "Tommy La Stella"];
+var topics = [{name:"Anthony+Rizzo", text:"Anthony Rizzo"}, {name:"Kris+Bryant", text:"Kris Bryant"}, {name:"Javier+Baez", text:"Javier Baez"}, {name:"Addison+Russell", text:"Addison Russell"}, {name:"Jon+Lester", text:"Jon Lester"},
+{name:"Kyle+Schwarber", text:"Kyle Schwarber"}, {name:"Ben+Zobrist", text:"Ben Zobrist"}, {name:"Joe+Maddon", text:"Joe Maddon"}, {name:"David+Ross", text:"David Ross"}, {name:"Wilson+Contreras", text:"Willson Contreras"}];
 
 $(document).ready(function () {
 
@@ -17,11 +17,12 @@ $(document).ready(function () {
             var topicDiv = $("<button>");
 
             // Adding a data-attribute with a value of the topic at index i
-            topicDiv.attr("data-topic", topics[i]);
+            topicDiv.attr("data-topic", topics[i].name);
             topicDiv.attr("data-state", "still");
+            topicDiv.addClass("btn btn-danger font-weight-bold shadow rounded py-0");
 
             // Providing the button's text with a value of the topic at index i
-            topicDiv.text(topics[i]);
+            topicDiv.text(topics[i].text);
             // Append the topicDiv to the HTML page in the "#buttons" div
             $("#buttons").append(topicDiv);
         }
@@ -57,11 +58,16 @@ $(document).ready(function () {
                 // Loop through each array item
                 for (var i = 0; i < results.length; i++) {
 
-                    //Create and store a div tag
-                    var topicDiv = $("<div>");
+                    // Create and store a div tag
+                    var topicDiv = $("<div id='images'>");
+                    
+                    // Create and store a button tag
+                    var downloadButton = $("<a id='download' download='gif' target='_blank'>").text("Download");
+                    downloadButton.addClass("btn btn-danger font-weight-bold shadow rounded py-0 m-0 mt-1 float-right")
+                    downloadButton.attr("href", results[i].images.original_mp4.mp4);
 
                     // Create a paragraph tag with the topic item's rating
-                    var topicRating = $("<p>").text(("Rating: " + results[i].rating.toUpperCase()));
+                    var topicRating = $("<p class='float-left'>").text(("Rating: " + results[i].rating.toUpperCase()));
 
                     // Create and store an image tag
                     var topicImage = $("<img>");
@@ -72,6 +78,7 @@ $(document).ready(function () {
                     // Adding a data-attribute with a value of the result image still/animate
                     topicImage.attr("data-still", results[i].images.fixed_height_still.url);
                     topicImage.attr("data-animate", results[i].images.fixed_height.url);
+                    topicImage.attr("data-state", "still");
 
                     // Setting the src attribute of the image to a property pulled off the result item
                     topicImage.attr("src", results[i].images.fixed_height_still.url);
@@ -79,11 +86,13 @@ $(document).ready(function () {
                     // Append the paragraph and image tags to the topicDiv
                     topicDiv.append(topicImage);
                     topicDiv.append(topicRating);
+                    topicDiv.append(downloadButton);
 
                     // Append the topicDiv to the HTML page in the "#gifs-appear-here" div
                     $("#gifs-appear-here").prepend(topicDiv);
-
+                    
                 };
+                
                 // When an image is clicked
                 $(".gif").on("click", function () {
                     // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
@@ -98,6 +107,7 @@ $(document).ready(function () {
                         $(this).attr("src", $(this).attr("data-still"));
                         $(this).attr("data-state", "still");
                     };
+                    console.log(this);
                 });
             });
     });
