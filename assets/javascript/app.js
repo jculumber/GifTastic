@@ -1,5 +1,5 @@
-var topics = [{name:"Anthony+Rizzo", text:"Anthony Rizzo"}, {name:"Kris+Bryant", text:"Kris Bryant"}, {name:"Javier+Baez", text:"Javier Baez"}, {name:"Addison+Russell", text:"Addison Russell"}, {name:"Jon+Lester", text:"Jon Lester"},
-{name:"Kyle+Schwarber", text:"Kyle Schwarber"}, {name:"Ben+Zobrist", text:"Ben Zobrist"}, {name:"Joe+Maddon", text:"Joe Maddon"}, {name:"David+Ross", text:"David Ross"}, {name:"Wilson+Contreras", text:"Willson Contreras"}];
+var topics = [{ name: "Anthony+Rizzo", text: "Anthony Rizzo" }, { name: "Kris+Bryant", text: "Kris Bryant" }, { name: "Javier+Baez", text: "Javier Baez" }, { name: "Addison+Russell", text: "Addison Russell" }, { name: "Jon+Lester", text: "Jon Lester" },
+{ name: "Kyle+Schwarber", text: "Kyle Schwarber" }, { name: "Ben+Zobrist", text: "Ben Zobrist" }, { name: "Joe+Maddon", text: "Joe Maddon" }, { name: "David+Ross", text: "David Ross" }, { name: "Wilson+Contreras", text: "Willson Contreras" }];
 
 $(document).ready(function () {
 
@@ -60,7 +60,7 @@ $(document).ready(function () {
 
                     // Create and store a div tag
                     var topicDiv = $("<div id='images'>");
-                    
+
                     // Create and store a tag for the download button
                     var downloadButton = $("<a id='download' target='_blank'>").text("Download");
                     downloadButton.addClass("btn btn-danger font-weight-bold shadow rounded py-0 m-0 mt-1 float-right")
@@ -91,9 +91,9 @@ $(document).ready(function () {
 
                     // Append the topicDiv to the HTML page in the "#gifs-appear-here" div
                     $("#gifs-appear-here").prepend(topicDiv);
-                    
+
                 };
-                
+
                 // When an image is clicked
                 $(".gif").on("click", function () {
                     // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
@@ -113,19 +113,22 @@ $(document).ready(function () {
             });
     });
 
-    
+
     // This function handles events where the submit button is clicked
-    $("#add-topic").on("click", function(event) {
+    $("#add-topic").on("click", function (event) {
         event.preventDefault();
-        // This line grabs the input from the textbox
-        var topic = $("#user-input").val().trim();
-        var topicName = topic.split(" ");
-        var fullName = topicName[0] + "+" + topicName[1]
+        
+            // This line grabs the input from the textbox
+            var topic = $("#user-input").val().trim();
+            var topicName = topic.split(" ");
+            var fullName = topicName[0] + "+" + topicName[1]
 
-        // Adding topic from the textbox to our array
-        topics.push({name: fullName, text: topic});
-
-        // Calling renderButtons which handles the processing of our topics array
-        renderButtons();
-      });
+            if (topic !== ""){
+            // Adding topic from the textbox to our array
+            topics.push({ name: fullName, text: topic });
+            };
+            console.log(topic);
+            // Calling renderButtons which handles the processing of our topics array
+            renderButtons();
+    });
 });
