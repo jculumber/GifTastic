@@ -51,6 +51,7 @@ $(document).ready(function () {
                 console.log(response);
                 // storing the data from the AJAX request in the results variable
                 var results = response.data;
+                var giphy = response.meta.response_id;
 
                 //Deleting the gifs prior to adding new ones
                 //$("#gifs-appear-here").empty();
@@ -65,7 +66,8 @@ $(document).ready(function () {
                     var downloadButton = $("<a id='download' target='_blank'>").text("Download");
                     downloadButton.addClass("btn btn-danger font-weight-bold shadow rounded py-0 m-0 mt-1 float-right")
                     downloadButton.attr("href", results[i].images.original_mp4.mp4);
-                    downloadButton.attr("download", "gif");
+                    downloadButton.attr("download", results[i].slug);
+                    
 
                     // Create a paragraph tag with the topic item's rating
                     var topicRating = $("<p class='float-left'>").text(("Rating: " + results[i].rating.toUpperCase()));
@@ -131,4 +133,5 @@ $(document).ready(function () {
             // Calling renderButtons which handles the processing of our topics array
             renderButtons();
     });
+    
 });
