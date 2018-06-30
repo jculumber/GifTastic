@@ -127,7 +127,7 @@ $(document).ready(function () {
 
             if (topic !== ""){
             // Adding topic from the textbox to our array
-            topics.push({ name: fullName, text: topic });
+            topics.push({ name: topic, text: topic });
             };
             console.log(topic);
             // Calling renderButtons which handles the processing of our topics array
